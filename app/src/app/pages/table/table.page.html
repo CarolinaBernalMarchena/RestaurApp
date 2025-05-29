@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Table Reservation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Table Reservation</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-button style="margin-top: 50px;" color="secondary" (click)="scanCode()">
+        <ion-icon name="qr-code-outline" style="font-size: 150px;"></ion-icon>
+      </ion-button>
+    </ion-row>
+    <ion-row class="ion-margin-top ion-justify-content-center">
+      <ion-col sizeXl="5" sizeLg="5" sizeMd="6" sizeSm="6" sizeXs="7">
+        <ion-input label="Id. de Mesa:" [(ngModel)]="tableId" maxlength="8" counter="true"></ion-input>
+        <ion-button class="ion-margin-top" (click)="setTable()" expand="block" [disabled]="!availableTables.includes(tableId)" color="secondary">Reservar Mesa</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-toast [isOpen]="errorToast" [duration]="3000" message="La mesa elegida es incorrecta o no está disponible" (didDismiss)="handleTableError()"></ion-toast>
+</ion-content>

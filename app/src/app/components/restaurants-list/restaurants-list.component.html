@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Restaurantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (restaurants && restaurants.length > 0) {
+    <ion-list>
+      @for (let restaurant of restaurants) {
+        <ion-item>
+          <ion-label>
+            <h2>{{ restaurant.name }}</h2>
+            <p>Dirección: {{ restaurant.address }}</p>
+            <p>Teléfono: {{ restaurant.phone }}</p>
+            <p>Estado: {{ restaurant.condition }}</p>
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  } else {
+    <div class="no-restaurants">
+      <p>No se encontraron restaurantes.</p>
+    </div>
+  }
+</ion-content>
+

@@ -1,0 +1,36 @@
+<ion-grid>
+  <ion-row class="ion-align-items-center">
+    @for (dish of dishes; track dish.id) {
+      <ion-col sizeXl="2" sizeLg="2" sizeMd="3" sizeSm="4" sizeXs="6">
+        <ion-card
+          (mouseenter)="onMouseEnter(dish.id)" 
+          (mouseleave)="onMouseLeave()"
+          [class.hovered]="hoveredDish === dish.id">
+          <div class="ion-text-center">
+            <img [src]="dish.image" [alt]="dish.name" failImage="https://i.imgur.com/4W4JMA3.png">
+          </div>
+          <ion-card-header>
+            <ion-card-title>{{dish.name}}</ion-card-title>
+            <ion-card-subtitle class="price">{{dish.price}}€</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <h3>{{dish.description}}</h3>
+            @if (dish.allergens.length > 0) {
+              <h2 style="margin-top: 15px;"><b>Allergens:</b></h2>
+              @for (allergen of dish.allergens; track allergen.id) {
+                <p>· {{allergen.name}}</p>
+              }
+            }
+            <!-- Add to order button -->
+            @if (hoveredDish === dish.id) {
+              <ion-button (click)="orderProduct(dish.id)" expand="block" class="ion-margin-top">
+                <ion-label>Order</ion-label>
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+              </ion-button>
+            }
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    }
+  </ion-row>
+</ion-grid>

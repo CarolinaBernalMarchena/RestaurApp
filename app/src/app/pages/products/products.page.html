@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <div style="display: flex;" slot="start">
+      <ion-title>Products</ion-title>
+      <ion-select placeholder="Filter by Type" (ionChange)="filterProducts($event)" color="medium" class="ion-margin-end">
+        <ion-select-option value="dishes">Dishes</ion-select-option>
+        <ion-select-option value="drinks">Drinks</ion-select-option>
+        <ion-select-option value="all">All Products</ion-select-option>
+      </ion-select>
+      <ion-select placeholder="Exclude Allergens" (ionChange)="filterAllergens($event)" multiple="true" color="medium">
+        @for (allergen of allergens; track allergen.id) {
+          <ion-select-option [value]="allergen.name.toLowerCase()">{{allergen.name}}</ion-select-option>
+        }
+      </ion-select>
+    </div>
+    <div style="display: flex;" slot="end">
+      <ion-select placeholder="Sort Products" (ionChange)="setProductOrder($event)" color="medium" class="ion-margin-end">
+        <ion-select-option value="alphabet">Alphabetically (A-Z)</ion-select-option>
+        <ion-select-option value="reverseAlphabet">Reverse Alphabet (Z-A)</ion-select-option>
+        <ion-select-option value="type">Type</ion-select-option>
+        <ion-select-option value="price">Price (Cheapest First)</ion-select-option>
+        <ion-select-option value="reversePrice">Price (Cheapest Last)</ion-select-option>
+      </ion-select>
+      <ion-buttons>
+        <ion-button (click)="cancelOrder()">
+          <ion-label>Cancel</ion-label>
+          <ion-icon name="trash-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Products</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-dish-list [dishes]="filterDishes"></app-dish-list>
+</ion-content>

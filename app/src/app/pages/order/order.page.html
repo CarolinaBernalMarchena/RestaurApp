@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Order</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelOrder()">
+        <ion-label>Cancel</ion-label>
+        <ion-icon name="trash-outline" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Order</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  @if (orderItems.length > 0) {
+    <ion-grid>
+      @for (orderItem of orderItems; track orderItem.id) {
+        <ion-row class="ion-justify-content-center">
+          <ion-col sizeXl="7" sizeLg="8" sizeMd="9" sizeSm="10">
+            <ion-item>
+              <ion-img [src]="orderItem.product.image" style="max-width: 100px;" class="ion-margin-bottom ion-margin-top ion-margin-end"></ion-img>
+              <ion-label>{{orderItem.product.name}}</ion-label>
+              <ion-buttons slot="end">
+                <ion-button (click)="removeItemOrder(orderItem)"><ion-icon name="remove-outline"></ion-icon></ion-button>
+                <ion-label>{{orderItem.quantity}}</ion-label>
+                <ion-button (click)="addItemOrder(orderItem)"><ion-icon name="add-outline"></ion-icon></ion-button>
+                <ion-label class="ion-margin-start">{{(orderItem.quantity * orderItem.product.price).toFixed(2)}}€</ion-label>
+              </ion-buttons>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      }
+      <ion-row class="ion-justify-content-center">
+        <ion-col sizeXl="7" sizeLg="8" sizeMd="9" sizeSm="10">
+          <ion-item>
+            <ion-label>
+              <h2>Total Price: {{ totalPrice.toFixed(2) }}€</h2>
+            </ion-label>
+          </ion-item>        
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  }
+  @else {
+    <h1 class="ion-text-center">Order empty, take a look at our menu!</h1>
+  }
+
+</ion-content>

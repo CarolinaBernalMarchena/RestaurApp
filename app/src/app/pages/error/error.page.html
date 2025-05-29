@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-title class="ion-text-center">Server Error</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+      <ion-col sizeXl="6" sizeLg="6" sizeMd="8" sizeSm="10" sizeXs="12" class="ion-text-center">
+        <ion-icon name="alert-circle-outline" style="font-size: 100px; color: red;"></ion-icon>
+        <ion-title class="ion-margin-top">Something went wrong</ion-title>
+        <p class="ion-margin-top">We could not connect to the application's server. Please try again later.</p>
+        <ion-button color="primary" class="ion-margin-top" expand="block" routerLink="/table">Try again</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "2024-training-3er-quarter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
